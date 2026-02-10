@@ -2,20 +2,29 @@ import React from 'react';
 
 import HomeProps from './types/home';
 
-export default function Home({ user, message }: HomeProps) {
+export default function Home({ users, message }: HomeProps) {
     return (
-        <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-            <h1>Página Home</h1>
+        <div style={{ padding: '20px' }}>
+            <h1>{message}</h1>
             
-            {user ? (
-                <p>Bem-vindo de volta, <strong>{user}</strong>!</p>
-            ) : (
-                <p>Olá! Você está usando Laravel + React + Inertia.</p>
-            )}
-
-            <div style={{ marginTop: '20px', padding: '15px', background: '#f0f0f0', borderRadius: '8px' }}>
-                <strong>Status do Backend:</strong> {message || 'Nenhuma mensagem recebida.'}
-            </div>
+            <table border={1} style={{ width: '100%', marginTop: '10px' }}>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users?.map(user => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
