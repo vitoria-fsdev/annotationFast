@@ -1,6 +1,7 @@
 import './bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
+import '../css/app.css';
 
 createInertiaApp({
     resolve: name => {
@@ -9,7 +10,6 @@ createInertiaApp({
         let page = pages[`./Pages/${name}.tsx`];
 
         if (!page) {
-            console.error(`Página não encontrada: ./Pages/${name}.tsx`);
             return pages[`./Pages/Login/Login.tsx`]; 
         }
 
