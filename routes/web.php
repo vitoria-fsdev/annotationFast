@@ -6,9 +6,11 @@ use App\Models\User;
 
 
 Route::get('/', function () {
-    return Inertia::render('Home', [
-        'users' => User::all(),
-        'message' => 'Sucesso! A aplicação está funcionando.',
+    return Inertia::render('Login', [
+        'loginProps' => [
+            'email' => 'eae',
+            'password' => 'eae',
+        ]
     ]); 
 });
 
