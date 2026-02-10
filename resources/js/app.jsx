@@ -1,7 +1,13 @@
 import './bootstrap';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Home from './Pages/Home';
+import { createInertiaApp } from '@inertiajs/react';
+import { createRoot } from 'react-dom/client';
 
-const root = ReactDOM.createRoot(document.getElementById('app'));
-root.render(<Home />);
+createInertiaApp({
+    resolve: name => {
+        const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true });
+        return pages[`./Pages/${name}.tsx`];
+    },
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />);
+    },
+});

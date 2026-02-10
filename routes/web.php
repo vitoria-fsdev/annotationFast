@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Home', [
+        'message' => 'Sucesso! A aplicação está funcionando.',
+    ]); 
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+
 
