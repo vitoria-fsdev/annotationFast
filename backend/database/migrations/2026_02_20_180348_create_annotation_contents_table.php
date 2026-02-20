@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->string('image_path')->nullable();
+            // criando uma chave estrangeira que aponta para a tabela de anotações e garantindo a integridade referencial
             $table->foreignId('annotation_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
