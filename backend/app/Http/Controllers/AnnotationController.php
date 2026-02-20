@@ -11,9 +11,13 @@ class AnnotationController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $annotations = Annotation::with('contents')->get();
-        return response()->json($annotations);
+    {   
+        try {
+            $annotations = Annotation::with('contents')->get();
+            return response()->json($annotations);
+        } catch (\Exception $th) {
+            return response()->json(['error' => 'Failed to fetch annotations', 'message' => $th->getMessage()], 500);
+        }
     }
 
     /**
