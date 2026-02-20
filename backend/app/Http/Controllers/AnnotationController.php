@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AnnotationResource;
 use App\Models\Annotation;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class AnnotationController extends Controller
     public function index()
     {   
         try {
-            $annotations = Annotation::with('contents')->get();
+            $annotations = AnnotationResource::collection(Annotation::with('contents')->get());
             return response()->json($annotations);
         } catch (\Exception $th) {
             return response()->json(['error' => 'Failed to fetch annotations', 'message' => $th->getMessage()], 500);
