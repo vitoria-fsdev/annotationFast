@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('annotations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            // criando uma chave estrangeira que aponta para a tabela de usuários e garantindo a integridade referencial
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
